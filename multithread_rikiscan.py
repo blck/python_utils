@@ -2,8 +2,9 @@
 
 
 #==============================#
-#    R1ki Scan by W0rmB0t      #
+#   R1ki Scan by W00rmB00t     #
 #	SYN Stealth Scan       #
+#     w00rm.b00t@gmail.com     #
 #==============================#
 
 
