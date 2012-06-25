@@ -9,17 +9,15 @@
 
 
 import sys
-import socket
 import fcntl
-import struct
 import logging
 import getopt
 import Queue
 import threading
 import time
 
-results = []
-
+opened = []
+closed = []
 
 #---------- worker thread class ----------#
 class WorkerThread(threading.Thread):
@@ -38,10 +36,12 @@ class WorkerThread(threading.Thread):
                 	TCP_SYN = TCP(sport=RandShort(), dport=port, flags = 'S', seq=0)
                 	TCP_SYNACK = sr1(ip/TCP_SYN, timeout=1)
                 	if not TCP_SYNACK or TCP_SYNACK.getlayer(TCP).flags != 0x12:
-                        	results.insert(port,"Scanning port "+str(port)+"...: \033[91mclosed\033[0m")
+                        	#print "Scanning port "+str(port)+"...: \033[91mclosed\033[0m"
+				closed.append(port)
 
                 	else:
-                        	results.insert(port,"Scanning port "+str(port)+"...: \033[92mopen\033[0m")
+                        	##print "Scanning port "+str(port)+"...: \033[92mopen\033[0m"
+				opened.append(port)
 
 
 		self.queue.task_done()
@@ -53,7 +53,7 @@ def usage():
 	Help function
 	"""
 	
-	print "Usage: multithread_rikiscan.py -d dst_ip [-i iface] [-n num_threads]"
+	print "Usage: multithread_rikiscan.py -d dst_ip [-i iface] [-n num_threads] [-f iniport] [-e endport] "
 	print "Example: multithread_rikiscan.py -d 127.0.0.1 -i eth0 -n 50"
 
 	sys.exit(1)
@@ -82,7 +82,7 @@ def main():
 		sys.exit(1)
 
 	try:
-		optlist, args = getopt.getopt(sys.argv[1:], "r:d:ho:i:n:b:e:", ["help", "output=", "dest=", "iport=", "eport="]) 
+		optlist, args = getopt.getopt(sys.argv[1:], "d:ho:i:n:e:f:", ["help", "output=", "dest=", "iport=", "eport="]) 
 
 	except getopt.GetoptError, err:
 		
@@ -112,7 +112,7 @@ def main():
 		elif o in ("-d", "--dest"):
 			dst_ip = a
 
-		elif o in ("-i", "--iport"):
+		elif o in ("-f", "--iport"):
 			ini_port = int(a)
 
 		elif o in ("-e", "--eport"):
@@ -149,9 +149,8 @@ def main():
 
 
 	queue.join()
-
-	for i in results:
-		print i
+	print "\033[91mClosed\033[0m ports: ", closed
+	print "\033[92mOpened\033[0m ports: ", opened
 
 #===========================================================#
 
