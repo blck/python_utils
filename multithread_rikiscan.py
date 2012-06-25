@@ -106,7 +106,6 @@ def main():
 			output = a
 
 		elif o in ("-h", "--help"):
-			usage()
 			sys.exit(0)
 	
 		elif o in ("-d", "--dest"):
