@@ -6,8 +6,8 @@ import sys
 
 def usage():
 
-	print "Usage: list_files_recursively.py [-d dir]"
-	print "Example: list_files_recursively.py -d /home"
+	print "Usage: list_files_recursively.py [-d dir] [-r]"
+	print "Example: list_files_recursively.py -d /home -r"
 	sys.exit(1)
 
 def listFiles(dir='.', s='', r=False):
