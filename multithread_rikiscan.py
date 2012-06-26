@@ -16,6 +16,14 @@ import Queue
 import threading
 import time
 
+try:
+	# Disable annoying IPv6 message
+        logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+        from scapy.all import *
+        conf.verb=0
+except ImportError:
+        print "Could not import scapy, please install python-scapy package."
+
 opened = []
 closed = []
 
@@ -154,12 +162,4 @@ def main():
 #===========================================================#
 
 if __name__== "__main__":
-	try:
-	        # Disable annoying IPv6 message
-        	logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-        	from scapy.all import *
-        	conf.verb=0
-	except ImportError:
-        	print "Could not import scapy, please install python-scapy package."
-
 	main()
