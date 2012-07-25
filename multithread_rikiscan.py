@@ -62,7 +62,10 @@ def usage():
 	"""
 	
 	print "Usage: multithread_rikiscan.py -d dst_ip [-i iface] [-n num_threads] [-f iniport] [-e endport] "
-	print "Example: multithread_rikiscan.py -d 127.0.0.1 -i eth0 -n 50"
+	print "Example: multithread_rikiscan.py -d 10.10.10.10 -i eth0 -n 50"
+	print "Example: multithread_rikiscan.py -d google.es -i eth0 -n 50"
+
+	print "WARNING: Don't use the same ip as the scanner machine, it doesn't work properly"
 
 	sys.exit(1)
 
@@ -133,7 +136,7 @@ def main():
 		print "\033[91mError: You must specify a destination ip\033[0m"
 		usage()
 	if ini_port > end_port:
-		print "Initial port is bigger than end one... Swapping values"
+		print "Initial port is bigger than the final one... Swapping values"
 		tmp_port = ini_port
 		ini_port = end_port
 		end_port = tmp_port
@@ -145,13 +148,15 @@ def main():
 	print "Beginning scan..."
 
 	queue = Queue.Queue()
+	if num_threads>=end_port-ini_port:
+		num_threads=end_port-ini_port
 	offset=(end_port-ini_port)/num_threads #Num of ports per thread
 	for me in range(num_threads):
 		worker = WorkerThread(queue)
 		worker.setDaemon(True)
 		worker.start()
-		local_ini_port=me*offset
-		local_end_port=(me+1)*offset-1
+		local_ini_port=me*offset+ini_port
+		local_end_port=(me+1)*offset-1+ini_port
 		queue.put((src_ip, dst_ip, local_ini_port, local_end_port))
 
 
