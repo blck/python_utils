@@ -1,0 +1,38 @@
+===============================================================================
+===============================================================================
+
+       		     Python Security Related Network Utils
+		
+				 W00rmB00t
+				
+			     w00rmb00t@gmail.com		
+
+===============================================================================
+===============================================================================
+
+
+
+===============================================================================
+			   D E S C R I P T I O N
+===============================================================================
+
+
+This is a set of python scripts to "play" with the network. Some of them can
+result dangerous if used for some other purposes than research. Use them at
+your own risk. No warranty is provided.
+
+
+===============================================================================
+			    	 U S A G E
+===============================================================================
+
+All scripts have been deployed using python2.7. To execute them you just need
+a python interpreter (and some extra modules you can find the specific README
+of each one).
+
+To use some of them you also need network connection.
+
+
+
+===============================================================================
+===============================================================================
