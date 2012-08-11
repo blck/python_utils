@@ -15,6 +15,7 @@ import getopt
 import Queue
 import threading
 import time
+import os
 
 try:
 	# Disable annoying IPv6 message
