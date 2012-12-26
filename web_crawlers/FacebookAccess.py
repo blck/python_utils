@@ -1,7 +1,7 @@
 '''
 Created on Nov 4, 2011
 
-@author: Manuel Miranda (manu.mirandad@gmail.com)
+@author: W00rmB00t (w00rmb00t@gmail.com)
 '''
 import sys 
 try:
@@ -15,13 +15,13 @@ except ImportError:
     sys.exit(-1)
 
 
-__PASSWORD='adminadmin'
+__PASSWORD='password'
 
 class FacebookAccess(object):
     
     __AUTHPAGE='http://www.facebook.com/'
     __AUTHFORM='login_form'
-    __USERNAME='amysmithdoe@hotmail.com'
+    __USERNAME='user@user.com'
     __ADVSEARCHFORM='WOS_AdvancedSearch_input_form'
     __PAPERSOPTFORM='output_form'
     __SAVEFILEFORM='etsForm'
